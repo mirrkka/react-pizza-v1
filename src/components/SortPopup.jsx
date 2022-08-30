@@ -7,7 +7,7 @@ function SortPopup({items}) {
 
     const [active, setActive] = useState(0)
 
-    const activeName = items[active]
+    const activeName = items[active].name
 
     const onSelectItem = (index) => {
         setActive(index)
