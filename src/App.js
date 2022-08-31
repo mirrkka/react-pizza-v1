@@ -7,7 +7,7 @@ import {
   
 } from "react-router-dom";
 import Cart from './pages/Cart';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import axios from 'axios'
 import {setPizzas} from './redux/actions/pizzas'
 import {useDispatch} from 'react-redux'
@@ -17,9 +17,6 @@ function App() {
 
   const dispatch = useDispatch()
   
-
- 
-
   useEffect(() => {
     axios.get('http://localhost:3000/db.json').then(({data}) => 
     dispatch(setPizzas(data.pizzas)))

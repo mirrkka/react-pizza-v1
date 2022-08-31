@@ -3,11 +3,12 @@ import { useState, useRef } from 'react'
 
 
 
-function SortPopup({items}) {
+function SortPopup({items, activeSortType}) {
 
     const [active, setActive] = useState(0)
 
     const activeName = items[active].name
+    // const activeLabel = items.find((obj) => obj.type === activeSortType).name;
 
     const onSelectItem = (index) => {
         setActive(index)
@@ -19,7 +20,7 @@ function SortPopup({items}) {
 
     
 
-    const onClickPopup = () => {
+    const toggleVisiblePopup = () => {
         setShown(!shown)
     }
 
@@ -50,14 +51,21 @@ function SortPopup({items}) {
             />
           </svg>
           <b>Сортировка по:</b>
-          <span onClick={onClickPopup}>{activeName}</span>
+          <span onClick={toggleVisiblePopup}>{activeName}</span>
         </div>
        {shown && 
         <div className="sort__popup">
-        <ul>
-        {items &&
-          items.map((name, index) => <li className={active === index ? 'active' : ''} onClick={() => onSelectItem(index)} key={name}>{name}</li>)}
-        </ul>
+         <ul>
+            {items &&
+              items.map((obj, index) => (
+                <li
+                  onClick={() => onSelectItem(obj)}
+                  className={activeSortType === obj.type ? 'active' : ''}
+                  key={`${obj.type}_${index}`}>
+                  {obj.name}
+                </li>
+              ))}
+          </ul>
       </div>}
       </div>
 
