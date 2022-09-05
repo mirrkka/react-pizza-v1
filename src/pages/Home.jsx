@@ -4,7 +4,8 @@ import Pizzablock from '../components/PizzaBlock';
 import SortPopup from '../components/SortPopup'
 import {useSelector, useDispatch} from 'react-redux'
 import { setCategory } from '../redux/actions/filters';
-import {useCallback} from 'react'
+import {useCallback, useEffect} from 'react'
+import { fetchPizzas } from '../redux/actions/pizzas'
 
 const categoryNames = ['Мясные', 'Вегетарианские', 'С сыром', 'Острые', 'Гриль']
 const sortItems = [{name: 'популярности', type: 'popular'}, 
@@ -18,6 +19,11 @@ function Home(){
 
   const items = useSelector(({pizzas}) => pizzas.items)
   
+  useEffect(() => {
+    
+    dispatch(fetchPizzas())
+
+  }, [])
 
   const onSelectCategory = useCallback((index) => {
     dispatch(setCategory(index))

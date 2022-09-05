@@ -8,8 +8,8 @@ import {
 } from "react-router-dom";
 import Cart from './pages/Cart';
 import { useEffect } from 'react';
-import axios from 'axios'
-import {fetchPizzas, setPizzas} from './redux/actions/pizzas'
+
+
 import {useDispatch} from 'react-redux'
 
 
@@ -17,10 +17,7 @@ function App() {
 
   const dispatch = useDispatch()
   
-  useEffect(() => {
-    dispatch(fetchPizzas())
-
-  }, [])
+  
 
   
 
