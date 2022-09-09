@@ -7,21 +7,10 @@ import {
   
 } from "react-router-dom";
 import Cart from './pages/Cart';
-import { useEffect } from 'react';
-
-
-import {useDispatch} from 'react-redux'
 
 
 function App() {
-
-  const dispatch = useDispatch()
   
-  
-
-  
-
-
   return (
     <BrowserRouter>
       <div className="wrapper">

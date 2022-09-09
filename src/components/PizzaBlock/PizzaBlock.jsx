@@ -2,7 +2,8 @@ import { useState } from 'react'
 
 
 
-function Pizzablock({title, imageUrl, price, sizes}){
+
+function Pizzablock({id, title, imageUrl, price, sizes, onClickAddPizza, addedCount}){
 
     const [activeType, setActiveType] = useState(1)
     const [activeSize, setActiveSize] = useState(1)
@@ -17,6 +18,13 @@ function Pizzablock({title, imageUrl, price, sizes}){
         setActiveSize(index)
     }
 
+    const onAddPizza = () => {
+      const obj = {id, title, imageUrl, price, size: sizes[activeSize], type: typeNames[activeType]}
+      onClickAddPizza(obj)
+      
+    }
+
+  
 
     return (
         <div className="pizza-block">
@@ -41,7 +49,7 @@ function Pizzablock({title, imageUrl, price, sizes}){
   </div>
   <div className="pizza-block__bottom">
     <div className="pizza-block__price">от {price} ₽</div>
-    <div className="button button--outline button--add">
+    <div onClick={onAddPizza} className="button button--outline button--add">
       <svg
         width="12"
         height="12"
@@ -55,7 +63,9 @@ function Pizzablock({title, imageUrl, price, sizes}){
         />
       </svg>
       <span>Добавить</span>
-      <i>2</i>
+      {addedCount &&
+      <i>{addedCount}</i>
+}
     </div>
   </div>
 </div>
